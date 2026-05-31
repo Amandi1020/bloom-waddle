@@ -141,3 +141,16 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Java / Spring Boot
+backend/target/
+*.class
+*.jar
+
+# Environment
+.env
+application-local.yml
+
+# OS
+.DS_Store
+Thumbs.db
