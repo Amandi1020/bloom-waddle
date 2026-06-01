@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import GameCanvas from './game/GameCanvas'
 import './App.css'
 
 function App() {
@@ -30,9 +31,7 @@ function App() {
           </button>
         </div>
       ) : (
-        <div style={{ color: 'white', fontSize: '1.5rem' }}>
-          🎮 Game canvas coming next!
-        </div>
+        <GameCanvas />
       )}
     </div>
   )
