@@ -1,11 +1,16 @@
-import { useRef, useCallback, useState } from 'react'
+import { useRef, useCallback, useState, useEffect } from 'react'
 import { useGameLoop } from './useGameLoop'
 import { drawMeadow } from './meadow'
+import { duck, setupControls, updateDuck, drawDuck } from './duck'
 
 export default function GameCanvas() {
   const canvasRef = useRef(null)
   const [theme, setTheme] = useState('day')
   const themeRef = useRef('day')
+
+  useEffect(() => {
+    setupControls()
+  }, [])
 
   const render = useCallback(() => {
     const canvas = canvasRef.current
@@ -13,13 +18,15 @@ export default function GameCanvas() {
     const ctx = canvas.getContext('2d')
     const { width, height } = canvas
 
+    // Clear
     ctx.clearRect(0, 0, width, height)
+
+    // Draw meadow background
     drawMeadow(ctx, width, height, themeRef.current)
 
-    ctx.fillStyle = 'rgba(0,0,0,0.4)'
-    ctx.font = 'bold 20px Segoe UI'
-    ctx.textAlign = 'center'
-    ctx.fillText('🦆 Duck coming next...', width / 2, height / 2)
+    // Update and draw duck
+    updateDuck(width, height)
+    drawDuck(ctx)
 
   }, [])
 
@@ -42,6 +49,8 @@ export default function GameCanvas() {
           display: 'block'
         }}
       />
+
+      {/* Theme buttons */}
       <div style={{
         position: 'absolute',
         top: 12,
@@ -66,6 +75,21 @@ export default function GameCanvas() {
             {t === 'day' ? '☀️' : t === 'night' ? '🌙' : t === 'rain' ? '🌧️' : '❄️'}
           </button>
         ))}
+      </div>
+
+      {/* Controls hint */}
+      <div style={{
+        position: 'absolute',
+        bottom: 12,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        background: 'rgba(0,0,0,0.4)',
+        color: 'white',
+        padding: '4px 14px',
+        borderRadius: '12px',
+        fontSize: '12px'
+      }}>
+        🎮 Use arrow keys to move the duck
       </div>
     </div>
   )
