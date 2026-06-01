@@ -13,11 +13,11 @@ function loadImage(src) {
 }
 
 export const FLOWER_TYPES = [
-  { type: 'daisy',     points: 1,  weight: 40, size: 40 },
-  { type: 'sunflower', points: 2,  weight: 30, size: 45 },
-  { type: 'tulip',     points: 3,  weight: 20, size: 40 },
-  { type: 'rose',      points: 4,  weight: 8,  size: 40 },
-  { type: 'rainbow',   points: 10, weight: 2,  size: 50 },
+  { type: 'daisy',     points: 1,  weight: 40, size: 70  },
+  { type: 'sunflower', points: 2,  weight: 30, size: 80  },
+  { type: 'tulip',     points: 3,  weight: 20, size: 75  },
+  { type: 'rose',      points: 4,  weight: 8,  size: 70  },
+  { type: 'rainbow',   points: 10, weight: 2,  size: 85  },
 ]
 
 export let flowers = []
@@ -42,7 +42,7 @@ export function spawnFlower(canvasWidth, canvasHeight) {
     points: type.points,
     size: type.size,
     x: Math.random() * (canvasWidth - 60) + 30,
-    y: canvasHeight * 0.68 + Math.random() * (canvasHeight * 0.25),
+    y: canvasHeight * 0.62 + Math.random() * (canvasHeight * 0.2),
     scale: 0,        // starts small, grows in
     collected: false,
   })
